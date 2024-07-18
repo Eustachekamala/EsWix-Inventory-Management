@@ -10,7 +10,7 @@
     </head>
     <body class="m-0 p-0 font-serif text-center">
         <!--Container section Sign Up-->
-        <section id="container-sign_up" hidden>
+        <section class="hidden" id="container-sign_up">
             <div class="w-1/3 h-3/6 border m-auto rounded-2xl my-32 p-8"  >
                 <h2 class="text-xl font-bold">Sign Up</h2>
                 <form class="m-8" action="">
@@ -21,7 +21,7 @@
                         </div>
                         <div class="flex flex-row justify-around text-start">
                             <label class="text-start" for="lastname">LastName :</label>
-                            <input class="border-b outline-none" type="text" placeholder="ex.John" required="required">
+                            <input class="border-b outline-none" type="text" placeholder="ex.Vladmir" required="required">
                         </div>
                         <div class="flex flex-row justify-around text-start">
                             <label class="text-start" for="email">Email :</label>
@@ -37,11 +37,11 @@
                         </div>
                     </div>
                     </form>
-                <!-- <button class="p-2 rounded-xl bg-blue-400 text-white hover:bg-blue-600" id="btn-create-account">Create an account</button> -->
+                <button class="p-2 rounded-xl bg-blue-400 text-white hover:bg-blue-600" id="btn-create-account-sign">Create an account</button>
             </div>
         </section>
         <!--Container section Sign In-->
-        <section id="container-sign_in" hidden>
+        <section class="hidden" id="container-sign_in">
              <div class="w-1/3 h-1/4 border border-gray-300 m-auto rounded-2xl my-44 p-8" >
                 <h2 class="text-xl font-bold">Sign In</h2>
                 <form class="m-8" action="">
@@ -58,12 +58,12 @@
                 </form>
                     <div class="flex flex-row gap-6 mx-44 w-full">
                         <button class=" flex gap-3 p-2 rounded-xl bg-blue-400 text-white hover:bg-blue-600" type="button" id="btn-sign_in"><span class="material-icons">login</span>Sign_in</button>
-                        <!-- <button class="p-2 rounded-xl bg-blue-400 text-white hover:bg-blue-600" type="button" id="btn-create-account">Create Accout</button> -->
+                        <button class="p-2 rounded-xl bg-blue-400 text-white hover:bg-blue-600" type="button" id="btn-create-account">Create Accout</button>
                     </div>
             </div>
         </section>
         <!--Container section dashboard-->
-        <section id="container-dashboard">
+        <section class="" id="container-dashboard">
             <div class="flex flex-row justify-between w-full h-20 p-5 shadow md:flex" >
                 <h2 class=" flex flex-row items-center gap-8 w-1/3 font-bold text-blue-400 text-2xl p-2 md:shrink-0 max-md:text-lg max-sm:text-sm" id="site_name"><span class="material-icons p-2 h-10 w-10 flex gap-3 rounded-xl bg-blue-400 text-white">person</span>EsWIx Shop</h2>
                     <header class="flex flex-row justify-around w-1/3 py-2">
@@ -75,6 +75,39 @@
                     </header>
                     <button type="button" class="flex gap-3 p-2 rounded-xl bg-blue-400 text-white hover:bg-blue-600"><span class="material-icons">logout</span></button>
              </div>
+            
+            <div class="flex flex-row">
+                <aside class="w-1/3 h-full">
+                    <h1 class="font-bold text-2xl h-40 w-full bg-blue-400 text-white">STOCK</h1>
+                    <form class="flex flex-col gap-4 w-full h-full border p-2" action="" method="post">
+                        <div class="flex flex-row w-4/5 justify-between">
+                            <label for="name">NAME</label>
+                            <input class="p-2 border w-96" type="text" placeholder="enter the item name">
+                        </div>
+                        <div class="flex flex-row gap-5 w-4/5 justify-between">
+                            <label for="price">PRICE</label>
+                            <input class="p-2 border w-96" type="text" placeholder="enter the price">
+                        </div>
+                        <div class="flex flex-row gap-5  w-4/5 justify-between">
+                            <label for="quantity">QUANTITY</label>
+                            <input class="p-2 border w-96" type="text" placeholder="enter the quantity">
+                        </div>
+                        <div class="flex flex-row gap-5  w-4/5 justify-between">
+                            <label for="image">IMAGE</label>
+                            <input class="p-2 border w-96" type="text" placeholder="enter the url of the photo">
+                        </div>
+                        <div class="w-3/4 flex flex-col">
+                            <label for="comment">COMMENT</label>
+                            <textarea class="border" name="comment" id=""></textarea>
+                        </div>
+                        <button type="submit" class="flex gap-3 p-2 rounded-xl bg-blue-400 text-white hover:bg-blue-600" id="create-item"><span class="material-icons">add</span>Add Item</button>
+                    </form>
+                </aside>
+
+                <div id="container-items" class="">
+                    <ul id="card-items" class=""></ul>
+                </div>
+            </div>
         </section>
         <script src="./script.js"></script>
     </body>
