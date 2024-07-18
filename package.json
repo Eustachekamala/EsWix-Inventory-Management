@@ -1,0 +1,14 @@
+{
+  "name": "eswix-inventory-management",
+  "version": "1.0.0",
+  "description": "Is a website for the Inventory Management of Stocks",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.4"
+  },
+  "author": "",
+  "license": "ISC"
+}
