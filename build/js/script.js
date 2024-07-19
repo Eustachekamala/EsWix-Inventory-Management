@@ -43,6 +43,7 @@ function renderOneItem(item) {
     <p class="w-full h-72">${item.comment}</p>
   `;
   card_Items.appendChild(card);
+  
 }
 
 // Fetch request to get all items
@@ -63,6 +64,7 @@ function getItems() {
 function addItemsPost(itemDetails) {
   fetch("http://localhost:3000/phones", {
   method: "POST",
+
   headers: {
     "Content-Type": "application/json",
   },
