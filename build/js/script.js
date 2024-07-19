@@ -4,7 +4,6 @@ const dashBoardSection = document.querySelector("#container-dashboard");
 const btnSignIn = document.querySelector("#btn-sign_in");
 const createAccount = document.querySelector("#btn-create-account");
 const createAccountSign = document.querySelector("#btn-create-account-sign");
-const container_items = document.querySelector("#card-items");
 const card_Items = document.querySelector("#card-items");
 const btnCrateItem = document.querySelector("#create-item");
 
@@ -27,7 +26,6 @@ const btnCrateItem = document.querySelector("#create-item");
 // createAccount.addEventListener("click", hideSection);
 // createAccountSign.addEventListener("click", showSection);
 
-btnCrateItem.addEventListener("submit", addItem);
 
 // Function to add an item to the DB
 function addItem(e) {
@@ -35,8 +33,8 @@ function addItem(e) {
 
   let itemDetails = {
     name: e.target.name.value,
-    price: e.target.price.value,
-    quantity: e.target.quantity.value,
+    price: 0,
+    quantity: 0,
     image: e.target.image_url.value,
     comment: e.target.commentSection.value,
   };
@@ -48,12 +46,15 @@ function addItem(e) {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Accept": "application/json",
     },
     body: JSON.stringify(itemDetails),
   })
     .then(res => res.json())
     .then(data => console.log(data)); // Optional: Log the response data
 }
+
+btnCrateItem.addEventListener("submit", addItem);
 
 // Function to render a single item
 function renderOneItem(item) {
@@ -70,19 +71,19 @@ function renderOneItem(item) {
     </div>
         <p class ="w-full h-72">${item.comment}</p>
   `
-  container_items.appendChild(card);
+  card_Items.appendChild(card);
 }
 
 
 // Fetch request to get all films
-function getFilms() {
+function getItems() {
   fetch("http://localhost:3000/phones")
     .then(res => res.json())
-    .then(filmData => filmData.forEach(film => renderOneItem(film)));
+    .then(dataItem => dataItem.forEach(item => renderOneItem(item)));
 }
 
 function initialize (){
-    getFilms();
+    getItems();
 }
 
 initialize();

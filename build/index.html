@@ -100,12 +100,12 @@
                             <label for="comment">COMMENT</label>
                             <textarea class="border w-full h-28" name="comment" id=""></textarea>
                         </div>
-                        <button type="submit" class="flex gap-3 p-2 rounded-xl bg-blue-400 text-white hover:bg-blue-600 mt-4" id="create-item"><span class="material-icons">add</span>Add Item</button>
+                        <button formmethod="post" type="" class="flex gap-3 p-2 rounded-xl bg-blue-400 text-white hover:bg-blue-600 mt-4" id="create-item"><span class="material-icons">add</span>Add Item</button>
                     </form>
                 </aside>
 
                 <div id="container-items" class="">
-                    <ul id="card-items" class="grid grid-cols-3"></ul>
+                    <ul id="card-items" class="grid grid-cols-3 max-h-max"></ul>
                 </div>
             </div>
         </section>
