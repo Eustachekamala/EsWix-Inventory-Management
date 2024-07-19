@@ -1,21 +1,27 @@
 const dashBoardSection = document.querySelector("#container-dashboard");
 const card_Items = document.querySelector("#card-items");
 const createItemForm = document.querySelector("#create-item");
+const name = document.querySelector("#name");
+const price =  document.querySelector("#price");
+const image = document.querySelector("#image");
+const quantity = document.querySelector("#quantity");
+const comment = document.querySelector("#comment");
 
-createItemForm.addEventListener("submit", addItem);
+
+createItemForm.addEventListener("click", addItem);
 
 // Function to add an item to the DB
 function addItem(e) {
   e.preventDefault(); // Prevent default form submission
 
   let itemDetails = {
-    name: e.target.elements.name.value,
-    price: Math.floor(e.target.elements.price.value), 
-    quantity: Math.floor(e.target.elements.quantity.value),
-    image: e.target.elements.image.value,
-    comment: e.target.elements.comment.value,
+    name: name.value,
+    price: Math.floor(price.value), 
+    quantity: Math.floor(quantity.value),
+    image: image.value,
+    comment: comment.value,
   };
-  
+
   renderOneItem(itemDetails); // Render the item locally
   addItemsPost(itemDetails);
   createItemForm.reset(); // Reset the form after submission
@@ -42,6 +48,7 @@ function renderOneItem(item) {
 // Fetch request to get all items
 function getItems() {
   fetch("http://localhost:3000/phones")
+
     .then(res => {
       if (!res.ok) {
         throw new Error("Network response was not ok");
