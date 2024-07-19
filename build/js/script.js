@@ -30,17 +30,18 @@ function addItem(e) {
 // Function to render a single item
 function renderOneItem(item) {
   let card = document.createElement("li");
-  card.classList = "w-80 h-96 rounded-2xl flex flex-col justify-center gap-3 m-4 bg-gray-200 p-8";
+  card.classList = "w-80 h-96 rounded-2xl flex flex-col justify-center gap-3 m-4 bg-gray-200 p-4";
   card.innerHTML = `
     <div class="flex flex-row gap-3 p-2 items-center">
-      <img class="w-44 h-44" src="${item.image}" alt="${item.name}">
-      <div class="flex flex-col gap-2">
+      <img class="w-40 h-44 rounded-2xl" src="${item.image}" alt="${item.name}">
+      
+      <div class="flex flex-col gap-2 shadow-2xl bg-white w-24 p-2 rounded-xl">
         <p>${item.name}</p>
         <p>${item.price}</p>
         <p>${item.quantity}</p>
       </div>
     </div>
-    <p class="w-full h-72">${item.comment}</p>
+    <p class="w-full h-72 bg-blue-400 p-4 rounded-bl-2xl rounded-br-2xl rounded-tl-3xl text-white shadow-2xl">${item.comment}</p>
   `;
   card_Items.appendChild(card);
   
