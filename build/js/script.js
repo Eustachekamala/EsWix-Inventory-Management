@@ -1,89 +1,79 @@
-const signUpSection = document.querySelector("#container-sign_up");
-const signInSection = document.querySelector("#container-sign_in");
 const dashBoardSection = document.querySelector("#container-dashboard");
-const btnSignIn = document.querySelector("#btn-sign_in");
-const createAccount = document.querySelector("#btn-create-account");
-const createAccountSign = document.querySelector("#btn-create-account-sign");
 const card_Items = document.querySelector("#card-items");
-const btnCrateItem = document.querySelector("#create-item");
+const createItemForm = document.querySelector("#create-item");
 
-// Function to hide a section
-// function hideSection() {
-//   signInSection.classList.add("hidden");
-//   dashBoardSection.classList.add("hidden");
-//   signUpSection.classList.remove("hidden");
-// }
-
-// // Function to show a section
-// function showSection() {
-//   signInSection.classList.add("hidden");
-//   dashBoardSection.classList.remove("hidden");
-// //   signUpSection.classList.add("hidden");
-// }
-
-// Adding event listeners
-// btnSignIn.addEventListener("click", showSection);
-// createAccount.addEventListener("click", hideSection);
-// createAccountSign.addEventListener("click", showSection);
-
+createItemForm.addEventListener("submit", addItem);
 
 // Function to add an item to the DB
 function addItem(e) {
   e.preventDefault(); // Prevent default form submission
 
   let itemDetails = {
-    name: e.target.name.value,
-    price: 0,
-    quantity: 0,
-    image: e.target.image_url.value,
-    comment: e.target.commentSection.value,
+    name: e.target.elements.name.value,
+    price: Math.floor(e.target.elements.price.value), 
+    quantity: Math.floor(e.target.elements.quantity.value),
+    image: e.target.elements.image.value,
+    comment: e.target.elements.comment.value,
   };
-
+  
   renderOneItem(itemDetails); // Render the item locally
-
-  // Send the data to the server (assuming a POST request)
-  fetch("http://localhost:3000/phones", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Accept": "application/json",
-    },
-    body: JSON.stringify(itemDetails),
-  })
-    .then(res => res.json())
-    .then(data => console.log(data)); // Optional: Log the response data
+  addItemsPost(itemDetails);
+  createItemForm.reset(); // Reset the form after submission
 }
-
-btnCrateItem.addEventListener("submit", addItem);
 
 // Function to render a single item
 function renderOneItem(item) {
   let card = document.createElement("li");
-  card.classList = "w-80 h-96 rounded-2xl flex flex-col justify-center gap-3 m-4 bg-gray-200 p-8"
+  card.classList = "w-80 h-96 rounded-2xl flex flex-col justify-center gap-3 m-4 bg-gray-200 p-8";
   card.innerHTML = `
     <div class="flex flex-row gap-3 p-2 items-center">
-      <img class="w-44 h-44" src="${item.image}">
-        <div class="flex flex-col gap-2">
-            <p>${item.name}</p>
-            <p>${item.price}</p>
-            <p>${item.quantity}</p>
-        </div>
+      <img class="w-44 h-44" src="${item.image}" alt="${item.name}">
+      <div class="flex flex-col gap-2">
+        <p>${item.name}</p>
+        <p>${item.price}</p>
+        <p>${item.quantity}</p>
+      </div>
     </div>
-        <p class ="w-full h-72">${item.comment}</p>
-  `
+    <p class="w-full h-72">${item.comment}</p>
+  `;
   card_Items.appendChild(card);
 }
 
-
-// Fetch request to get all films
+// Fetch request to get all items
 function getItems() {
   fetch("http://localhost:3000/phones")
-    .then(res => res.json())
-    .then(dataItem => dataItem.forEach(item => renderOneItem(item)));
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return res.json();
+    })
+    .then(dataItems => dataItems.forEach(item => renderOneItem(item)))
+    // .catch(error => console.error("Error fetching items:", error));
 }
 
-function initialize (){
-    getItems();
+// Function to add item via POST request
+function addItemsPost(itemDetails) {
+  fetch("http://localhost:3000/phones", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+    body: JSON.stringify(itemDetails),
+  })
+    .then(res => {
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return res.json();
+    })
+    .then(data => console.log("Item added:", data)) // Optional: Log the response data
+    .catch(error => console.error("Error adding item:", error));
+}
+
+// Initialize the application
+function initialize() {
+  getItems();
 }
 
 initialize();
