@@ -4,7 +4,7 @@ const dashBoardSection = document.querySelector("#container-dashboard");
 const btnSignIn = document.querySelector("#btn-sign_in");
 const createAccount = document.querySelector("#btn-create-account");
 const createAccountSign = document.querySelector("#btn-create-account-sign");
-const container_items = document.querySelector("#container-items");
+const container_items = document.querySelector("#card-items");
 const card_Items = document.querySelector("#card-items");
 const btnCrateItem = document.querySelector("#create-item");
 
@@ -58,17 +58,17 @@ function addItem(e) {
 // Function to render a single item
 function renderOneItem(item) {
   let card = document.createElement("li");
-  card.classList = "flex flex-col gap-3"
+  card.classList = "w-80 h-96 rounded-2xl flex flex-col justify-center gap-3 m-4 bg-gray-200 p-8"
   card.innerHTML = `
-    <div class="flex flex-row ">
-        <img class="h-20 w-20" src="${item.image}">
+    <div class="flex flex-row gap-3 p-2 items-center">
+      <img class="w-44 h-44" src="${item.image}">
         <div class="flex flex-col gap-2">
             <p>${item.name}</p>
             <p>${item.price}</p>
             <p>${item.quantity}</p>
         </div>
     </div>
-        <p class ="w-1/2 h-72">${item.comment}</p>
+        <p class ="w-full h-72">${item.comment}</p>
   `
   container_items.appendChild(card);
 }
